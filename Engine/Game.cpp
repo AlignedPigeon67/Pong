@@ -40,23 +40,17 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	if (wnd.kbd.KeyIsPressed('W')) paddleLeft.Update('W');
-	if (wnd.kbd.KeyIsPressed('S')) paddleLeft.Update('S');
-	if (wnd.kbd.KeyIsPressed(VK_UP)) paddleRight.Update('W');
-	if (wnd.kbd.KeyIsPressed(VK_DOWN)) paddleRight.Update('S');
+	const float deltaTime = ft.Mark();
 
-	ball.Update();
+	if (wnd.kbd.KeyIsPressed('W')) paddleLeft.Update('W', deltaTime);
+	if (wnd.kbd.KeyIsPressed('S')) paddleLeft.Update('S', deltaTime);
+	if (wnd.kbd.KeyIsPressed(VK_UP)) paddleRight.Update('W', deltaTime);
+	if (wnd.kbd.KeyIsPressed(VK_DOWN)) paddleRight.Update('S', deltaTime);
 
-	if (ball.TestPaddleCollision(paddleLeft))
-	{
-		ball.PaddleCollision();
-		paddleLeft.IncrementScore();
-	}
-	if (ball.TestPaddleCollision(paddleRight))
-	{
-		ball.PaddleCollision();
-		paddleRight.IncrementScore();
-	}
+	ball.Update(deltaTime);
+
+	ball.TestPaddleCollision(paddleLeft);
+	ball.TestPaddleCollision(paddleRight);
 
 	ball.ScreenXGoal(paddleLeft, paddleRight);
 }

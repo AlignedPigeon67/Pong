@@ -25,6 +25,7 @@
 #include "Graphics.h"
 #include "Paddle.h"
 #include "Ball.h"
+#include "FrameTimer.h"
 
 class Game
 {
@@ -49,6 +50,8 @@ private:
 	Paddle paddleRight;
 
 	Ball ball;
+
+	FrameTimer ft;
 
 	bool gameOver = false;
 

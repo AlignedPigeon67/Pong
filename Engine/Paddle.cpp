@@ -38,10 +38,10 @@ void Paddle::Draw(Graphics& gfx) const
 	gfx.DrawRect(int(x), int(y), width, height, color);
 }
 
-void Paddle::Update(char key)
+void Paddle::Update(char key, float dt)
 {
-	if (key == 'W') y -= speed;
-	else if (key == 'S') y += speed;
+	if (key == 'W') y -= speed * dt;
+	else if (key == 'S') y += speed * dt;
 
 	ScreenYBorder();
 }

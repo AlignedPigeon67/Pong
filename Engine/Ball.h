@@ -10,9 +10,8 @@ class Ball
 public:
 	Ball();
 	void Draw(Graphics& gfx);
-	void Update();
-	bool TestPaddleCollision(Paddle paddle);
-	void PaddleCollision();
+	void Update(float dt);
+	void TestPaddleCollision(Paddle paddle);
 	void ScreenXGoal(Paddle paddleLeft, Paddle paddleRight);
 private:
 	void ScreenYBounce();
@@ -21,7 +20,7 @@ private:
 	float xv = -1.0f;
 	float yv = -1.0f;
 	static constexpr int dimension = 10;
-	float speed = 4.0f;
+	float speed = 4.0f * 60.0f;
 	Color color = Colors::White;
 
 	std::random_device rd;
